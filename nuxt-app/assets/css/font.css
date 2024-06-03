@@ -1,0 +1,12 @@
+@font-face {
+    font-family: IRANIANSans;
+    font-style: normal;
+    
+    src: url('../fonts/irsans_p30download.com.ttf');
+   
+}
+body {
+    font-family: IRANIANSans !important;
+   
+    direction: rtl;
+}
