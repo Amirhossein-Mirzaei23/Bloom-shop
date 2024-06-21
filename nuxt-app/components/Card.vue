@@ -32,13 +32,24 @@ async function getData(){
 console.log("get data");
 try {
 
-    const {data,err} = await useFetch(`/getAllUsers`)
+    const {data,err} = await useFetch(`${apiBase}/users`,{
+        method:'GET',
+        headers:{'content-type':'application/json'},
+        Origin: 'http://localhost:3000',
+        
+    })
+
+    const products = await useFetch(`${apiBase}/products`,{
+        method:'GET'  
+    }).then((res)=>{
+        console.log(res.data);
+    })
 
 console.log(data);
 console.log(err);
 
 } catch (error) {
-
+console.log('err');
     console.log(error);
 
 }
