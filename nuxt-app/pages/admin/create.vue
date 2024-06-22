@@ -1,20 +1,40 @@
 <template>
     <div class="container w-screen h-screen" >
-        <div class="py-5 px-2" >
-<buttton @click="changeComponent('products')"  class="px-2 py-2 bg-teal-200 border border-teal-600 hover:border-teal-600 hover:bg-teal-600 transition-all duration-500" >افزودن محصول</buttton>
-<buttton @click="changeComponent('users')"  class="px-2 py-2 bg-teal-200 border border-teal-600 hover:border-teal-600 hover:bg-teal-600 transition-all duration-500" >افزودن کاربر</buttton>
-<buttton @click="changeComponent('categories')"  class="px-2 py-2 bg-teal-200 border border-teal-600 hover:border-teal-600 hover:bg-teal-600 transition-all duration-500" >افزودن کتگوری</buttton>
+        <div class="py-5 px-2 flex gap-10 h-1/6 bg-slate-300 " >
+<buttton @click="changeComponent('products')"    class=" rounded-lg px-5 h-4/6 flex items-center text-center border-2 bg-teal-100 hover:border-b-4 border-teal-700 hover:border-teal-100 hover:bg-teal-600 transition-all duration-500" >افزودن محصول</buttton>
+<buttton @click="changeComponent('users')"       class=" rounded-lg px-5 h-4/6 flex items-center text-center border-2 bg-teal-100 hover:border-b-4 border-teal-700 hover:border-teal-100 hover:bg-teal-600 transition-all duration-500" >افزودن کاربر</buttton>
+<buttton @click="changeComponent('categories')"  class=" rounded-lg px-5 h-4/6 flex items-center text-center border-2 bg-teal-100 hover:border-b-4 border-teal-700 hover:border-teal-100 hover:bg-teal-600 transition-all duration-500" >افزودن کتگوری</buttton>
         </div>
         <div class=" px-2">
-           <AdminCreateProduct />
+           <AdminCreateProduct v-if="createProduct" />
+           <AdminAddUser v-if="addUser" />
+           <AdminAddCategory v-if="addCategory" />
         </div>
     </div>
 </template>
 
 <script setup>
 function changeComponent(target){
-console.log(target);
+    if (target == 'products') {
+        createProduct.value = true
+        addUser.value = false
+        addCategory.value = false
+    }
+    if (target == 'users') {
+        createProduct.value = false
+        addUser.value = true
+        addCategory.value = false
+    }
+    if (target == 'categories') {
+        createProduct.value = false
+        addUser.value = false
+        addCategory.value = true
+    }
 }
+
+const createProduct = ref(true)
+const addUser = ref(false)
+const addCategory = ref(false)
 </script>
 
 <style lang="scss" scoped>
