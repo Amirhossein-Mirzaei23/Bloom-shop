@@ -1,49 +1,32 @@
 <template>
     <div class="bg-slate-100" >
         <div><h3>افزودن کتگوری</h3></div>
-        <FormKit type="form"  @submit="create" id="createProductForm" :incomplete-message="true" :actions="false">
+        <FormKit type="form"  @submit="create" id="createNewCategoryForm" :incomplete-message="true" :actions="false">
             <div class="grid grid-cols-3 gap-5 p-5 hover:shadow-lg hover:shadow-teal-500" >
             <div>
-                <FormKit type="text"  name="title" id="title" label=" عنوان کالا" label-class="form-label"
+                <FormKit type="text"  name="title" id="title" label=" عنوان دسته بندی" label-class="form-label"
                 input-class="form-control px-2  rounded-lg hover:shadow-xl hover:shadow-teal-500  focus:scale-105 transition-all duration-500" validation="required"
                 :validation-messages="{ required: 'فیلد عنوان الزامیست' }"
                 messages-class="form-text text-danger" />
             </div>
             <div>
-                <FormKit type="number" name="id" id="id" label="شناسه" label-class="form-label"
+                <FormKit type="number" name="categoryId" id="categoryId" label="شناسه" label-class="form-label"
                 input-class="form-control px-2  rounded-lg hover:shadow-xl hover:shadow-teal-500  focus:scale-105 transition-all duration-500" validation="required"
                 :validation-messages="{ required: 'فیلد شناسه الزامیست' }"
                 messages-class="form-text text-danger" />
             </div>
-            <div>
-                <FormKit type="select" name="type" id="type" label="نوع" label-class="form-label"
-                input-class="form-select px-2  rounded-lg hover:shadow-xl hover:shadow-teal-500  focus:shadow-xl  focus:shadow-teal-500 transition-all duration-500" validation="required"
-                :options="productsTypeArray"
-                :validation-messages="{ required: 'فیلد ثایپ الزامیست' }"
-                messages-class="form-text text-danger" />
-            </div>
+            
             <div>
                 <FormKit type="text" name="description" id="description" label="توصیف" label-class="form-label"
                 input-class="form-control px-2  rounded-lg hover:shadow-xl hover:shadow-teal-500  focus:scale-105 transition-all duration-500" validation="required"
                 :validation-messages="{ required: 'فیلد توضیحات الزامیست' }"
                 messages-class="form-text text-danger" />
             </div>
+          
             <div>
-                <FormKit type="text" name="flowerPot" id="flowerPot" label="گلدان" label-class="form-label"
-                input-class="form-control px-2  rounded-lg hover:shadow-xl hover:shadow-teal-500  focus:scale-105 transition-all duration-500" validation="required"
-                :validation-messages="{ required: 'فیلد گلدان الزامیست' }"
-                messages-class="form-text text-danger" />
-            </div>
-            <div>
-                <FormKit type="number" name="price" id="price" label="قیمت" label-class="form-label"
-                input-class="form-control px-2  rounded-lg hover:shadow-xl hover:shadow-teal-500  focus:scale-105 transition-all duration-500" validation="required"
-                :validation-messages="{ required: 'فیلد عنوان الزامیست' }"
-                messages-class="form-text text-danger" />
-            </div>
-            <div>
-                <FormKit type="file" name="image" id="image" label="تصویر" label-class="form-label"
+                <FormKit type="text" name="icon" id="icon" label="تصویر" label-class="form-label"
                 input-class="form-control" validation=""
-                :validation-messages="{ required: 'فیلد تصویر الزامیست' }"
+                :validation-messages="{ required: 'فیلد ایکون الزامیست' }"
                 messages-class="form-text text-danger" />
             </div>
             <div>
@@ -72,18 +55,6 @@
 import { reset } from "@formkit/core"
 
 const {public:{apiBase}} = useRuntimeConfig();
-const productsTypeArray = [
-                    'دسته گل',
-                    'گیاهان آپارتمانی',
-                    'باکس گل',
-                    'باکس توت فرنگی', 
-                  ]
-const productsTypeIdArray =[
-                    {id:1,title:'دسته گل'},
-                    {id:1,title: 'گیاهان آپارتمانی'},
-                    {id:1,title:'باکس گل'},
-                    {id:1,title:'باکس توت فرنگی'}   
-]
 
 const btnLoader = ref(false)
 
@@ -91,20 +62,12 @@ async function create(formData){
     console.log('click');
     console.log(formData);
 
-    productsTypeIdArray.map((typeInfo)=>{
-        if(typeInfo.title == formData.type){
-            formData.typeId =  typeInfo.id 
-        }
-       
-    })
-
-
     try {
         btnLoader.value = true;
       //  errors.value = [];
 /// send new data to create a new product in the server side
 console.log(formData);
-const products = await useFetch(`${apiBase}/products/create`,{
+const category = await useFetch(`${apiBase}/categories/create`,{
         method:'POST',
         body:formData  
     }).then((res)=>{
@@ -113,7 +76,7 @@ const products = await useFetch(`${apiBase}/products/create`,{
 /// use reset method to clear all input value of FormKit
         reset('createProductForm')
 /// create a tostr to show success massage 
-        toastr.success("ایجاد آدرس باموفقیت انجام شد");
+        toastr.success("ایجاد دسته بندی باموفقیت انجام شد");
     } catch (error) {
 //    errors.value = Object.values(error.data.data.message).flat();
     console.log(error);
