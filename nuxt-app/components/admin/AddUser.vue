@@ -4,48 +4,43 @@
         <FormKit type="form"  @submit="create" id="createProductForm" :incomplete-message="true" :actions="false">
             <div class="grid grid-cols-3 gap-5 p-5 hover:shadow-lg hover:shadow-teal-500" >
             <div>
-                <FormKit type="text"  name="title" id="title" label=" عنوان کالا" label-class="form-label"
+                <FormKit type="text"  name="first_name" id="first_name" label="نام" label-class="form-label"
                 input-class="form-control px-2  rounded-lg hover:shadow-xl hover:shadow-teal-500  focus:scale-105 transition-all duration-500" validation="required"
                 :validation-messages="{ required: 'فیلد عنوان الزامیست' }"
                 messages-class="form-text text-danger" />
             </div>
             <div>
-                <FormKit type="number" name="id" id="id" label="شناسه" label-class="form-label"
+                <FormKit type="text"  name="last_name" id="last_name" label="نام خانوادگی" label-class="form-label"
+                input-class="form-control px-2  rounded-lg hover:shadow-xl hover:shadow-teal-500  focus:scale-105 transition-all duration-500" validation="required"
+                :validation-messages="{ required: 'نام خانوادگی کاربر الزامیست' }"
+                messages-class="form-text text-rose-700" />
+            </div>
+            <div>
+                <FormKit type="text" name="address" id="address" label="ادرس" label-class="form-label"
+                input-class="form-control px-2  rounded-lg hover:shadow-xl hover:shadow-teal-500  focus:scale-105 transition-all duration-500" validation="required"
+                :validation-messages="{ required: 'فیلد ادرس الزامیست' }"
+                messages-class="form-text text-danger" />
+            </div>
+            
+            <div>
+                <FormKit type="number" name="phoneNumber" id="phoneNumber" label="شماره همراه" label-class="form-label"
+                input-class="form-control px-2  rounded-lg hover:shadow-xl hover:shadow-teal-500  focus:scale-105 transition-all duration-500" validation="required"
+                :validation-messages="{ required: 'فیلد شماره تلفن الزامیست' }"
+                messages-class="form-text text-rose-700" />
+            </div>
+            <div>
+                <FormKit type="number" name="userId" id="userId" label="شناسه کاربر" label-class="form-label"
                 input-class="form-control px-2  rounded-lg hover:shadow-xl hover:shadow-teal-500  focus:scale-105 transition-all duration-500" validation="required"
                 :validation-messages="{ required: 'فیلد شناسه الزامیست' }"
-                messages-class="form-text text-danger" />
+                messages-class="form-text text-rose-700" />
             </div>
             <div>
-                <FormKit type="select" name="type" id="type" label="نوع" label-class="form-label"
-                input-class="form-select px-2  rounded-lg hover:shadow-xl hover:shadow-teal-500  focus:shadow-xl  focus:shadow-teal-500 transition-all duration-500" validation="required"
-                :options="productsTypeArray"
-                :validation-messages="{ required: 'فیلد ثایپ الزامیست' }"
-                messages-class="form-text text-danger" />
-            </div>
-            <div>
-                <FormKit type="text" name="description" id="description" label="توصیف" label-class="form-label"
+                <FormKit type="number" name="password" id="password" label="رمز کاربر" label-class="form-label"
                 input-class="form-control px-2  rounded-lg hover:shadow-xl hover:shadow-teal-500  focus:scale-105 transition-all duration-500" validation="required"
-                :validation-messages="{ required: 'فیلد توضیحات الزامیست' }"
-                messages-class="form-text text-danger" />
+                :validation-messages="{ required: 'فیلد پسورد الزامیست' }"
+                messages-class="form-text text-rose-700" />
             </div>
-            <div>
-                <FormKit type="text" name="flowerPot" id="flowerPot" label="گلدان" label-class="form-label"
-                input-class="form-control px-2  rounded-lg hover:shadow-xl hover:shadow-teal-500  focus:scale-105 transition-all duration-500" validation="required"
-                :validation-messages="{ required: 'فیلد گلدان الزامیست' }"
-                messages-class="form-text text-danger" />
-            </div>
-            <div>
-                <FormKit type="number" name="price" id="price" label="قیمت" label-class="form-label"
-                input-class="form-control px-2  rounded-lg hover:shadow-xl hover:shadow-teal-500  focus:scale-105 transition-all duration-500" validation="required"
-                :validation-messages="{ required: 'فیلد عنوان الزامیست' }"
-                messages-class="form-text text-danger" />
-            </div>
-            <div>
-                <FormKit type="file" name="image" id="image" label="تصویر" label-class="form-label"
-                input-class="form-control" validation=""
-                :validation-messages="{ required: 'فیلد تصویر الزامیست' }"
-                messages-class="form-text text-danger" />
-            </div>
+        
             <div>
                 <FormKit
                   type="submit"
@@ -72,18 +67,7 @@
 import { reset } from "@formkit/core"
 
 const {public:{apiBase}} = useRuntimeConfig();
-const productsTypeArray = [
-                    'دسته گل',
-                    'گیاهان آپارتمانی',
-                    'باکس گل',
-                    'باکس توت فرنگی', 
-                  ]
-const productsTypeIdArray =[
-                    {id:1,title:'دسته گل'},
-                    {id:1,title: 'گیاهان آپارتمانی'},
-                    {id:1,title:'باکس گل'},
-                    {id:1,title:'باکس توت فرنگی'}   
-]
+
 
 const btnLoader = ref(false)
 
@@ -91,20 +75,12 @@ async function create(formData){
     console.log('click');
     console.log(formData);
 
-    productsTypeIdArray.map((typeInfo)=>{
-        if(typeInfo.title == formData.type){
-            formData.typeId =  typeInfo.id 
-        }
-       
-    })
-
-
     try {
         btnLoader.value = true;
       //  errors.value = [];
 /// send new data to create a new product in the server side
 console.log(formData);
-const products = await useFetch(`${apiBase}/products/create`,{
+const newUser = await useFetch(`${apiBase}/users/add`,{
         method:'POST',
         body:formData  
     }).then((res)=>{
