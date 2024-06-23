@@ -23,7 +23,7 @@ productsRouter.post('/create',(req,res)=>{
         typeId:req.body.typeId,
         price:req.body.price,
         description :req.body.description,
-        image:'@/src/assets/image/products/image1.png',
+        image:`@/src/assets/image/products/+${req.body.icon}`,
         flowerPot:req.body.flowerPot
     }
 

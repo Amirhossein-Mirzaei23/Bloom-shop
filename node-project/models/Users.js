@@ -30,6 +30,10 @@ first_name:{
         required:true,
         trim:true,
         minLenth:8
+    },
+    address:{
+        type:String,
+        minLenth:2
     }
 })
 
