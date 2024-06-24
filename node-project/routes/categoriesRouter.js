@@ -9,11 +9,46 @@ console.log('use cate');
 categoriesRouter.get('/',(req,res)=>{
     
     console.log('categoriesRouter');
-    categoryModel.find({}).then((allCategory)=>{
+    categoryModel.find({}).then((category)=>{
         console.log('allUsers');
-        res.json(allCategory)
+        res.json(category)
     })
 })
+
+categoriesRouter.put('/edit-category/:id',(req,res)=>{
+    console.log('productsRouter');
+    categoryModel.findOneAndUpdate(
+        {id: req.params.id},
+        {
+        categoryId:req.params.id,
+        title:req.body.title,
+        description :req.body.description,
+        icon:`@/src/assets/image/categories/+${req.body.icon}`,
+    }).then((res)=>{
+        let response = {
+            state:{err:0,msg:'دسته بندی با موفقیت ویرایش شد'}
+           }
+           res.json(response)
+    })
+
+})
+
+categoriesRouter.delete('/delte-category/:id',(req,res)=>{
+    console.log('productsRouter');
+    categoryModel.findOneAndDelete( {id:req.params.id} ).then((category)=>{
+        let response = {
+            state:{err:0,msg:'دسته بندی با موفقیت حذف شد'}
+           }
+           res.json(response)
+    console.log(category);
+    })
+})
+
+
+
+
+
+
 
 // create a new category in category model
 categoriesRouter.post('/create',(req,res)=>{
@@ -30,7 +65,7 @@ categoriesRouter.post('/create',(req,res)=>{
      console.log('new product created');
    })
    let response = {
-    state:{err:0,msg:'محصول با موفقیت افزوده شد'}
+    state:{err:0,msg:'دسته بندی با موفقیت افزوده شد'}
    }
    res.json(response)
 })

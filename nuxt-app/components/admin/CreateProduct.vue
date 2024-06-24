@@ -35,9 +35,23 @@
                 messages-class="form-text text-danger" />
             </div>
             <div>
-                <FormKit type="number" name="price" id="price" label="قیمت" label-class="form-label"
+                <FormKit type="number" name="salePrice" id="salePrice" label="قیمت" label-class="form-label"
                 input-class="form-control px-2  rounded-lg hover:shadow-xl hover:shadow-teal-500  focus:scale-105 transition-all duration-500" validation="required"
-                :validation-messages="{ required: 'فیلد عنوان الزامیست' }"
+                :validation-messages="{ required: 'فیلد قمیت الزامیست' }"
+                messages-class="form-text text-danger" />
+            </div>
+            <div>
+                <FormKit type="number" name="offPrice" id="offPrice" label="با تخفیف قیمت " label-class="form-label"
+                input-class="form-control px-2  rounded-lg hover:shadow-xl hover:shadow-teal-500  focus:scale-105 transition-all duration-500" 
+                validation=""
+                :validation-messages="{ required: 'فیلد قیمت الزامیست' }"
+                messages-class="form-text text-danger" />
+            </div>
+            <div>
+                <FormKit type="number" name="dollerPrice" id="dollerPrice" label="دلاری قیمت" label-class="form-label"
+                input-class="form-control px-2  rounded-lg hover:shadow-xl hover:shadow-teal-500  focus:scale-105 transition-all duration-500"
+                 validation=""
+                :validation-messages="{ required: 'فیلد قیمت دلاری الزامیست' }"
                 messages-class="form-text text-danger" />
             </div>
             <div>
