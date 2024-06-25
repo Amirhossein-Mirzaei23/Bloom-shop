@@ -55,11 +55,11 @@ mongoose.Promise = global.Promise
 
  // create user
 
- let amirUserInfo ={
-  userId:20,first_name:'amir',last_name:'mirzaei',phoneNumber:09338262657,password:'amir1379'
- }
- 
- let amirUser = new userModel(amirUserInfo)
+// let amirUserInfo ={
+//  userId:20,first_name:'amir',last_name:'mirzaei',phoneNumber:09338262657,password:'amir1379'
+// }
+// 
+// let amirUser = new userModel(amirUserInfo)
 
  // save created user
 
