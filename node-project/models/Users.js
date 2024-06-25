@@ -25,6 +25,12 @@ first_name:{
         trim:true,
         
     },
+    role:{
+        type:String,
+        required:true,
+        trim:true,
+        lowerCase:true
+    },
     password:{
         type:String,
         required:true,
