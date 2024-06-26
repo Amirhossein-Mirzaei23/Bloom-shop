@@ -16,6 +16,13 @@
                 messages-class="form-text text-rose-700" />
             </div>
             <div>
+                <FormKit type="select" name="role" id="role" label="نوع" label-class="form-label"
+                input-class="form-select px-2  rounded-lg hover:shadow-xl hover:shadow-teal-500  focus:shadow-xl  focus:shadow-teal-500 transition-all duration-500" validation="required"
+                :options="usersRoleTypeArray"
+                :validation-messages="{ required: 'فیلد ثایپ الزامیست' }"
+                messages-class="form-text text-danger" />
+            </div>
+            <div>
                 <FormKit type="text" name="address" id="address" label="ادرس" label-class="form-label"
                 input-class="form-control px-2  rounded-lg hover:shadow-xl hover:shadow-teal-500  focus:scale-105 transition-all duration-500" validation="required"
                 :validation-messages="{ required: 'فیلد ادرس الزامیست' }"
@@ -35,7 +42,7 @@
                 messages-class="form-text text-rose-700" />
             </div>
             <div>
-                <FormKit type="number" name="password" id="password" label="رمز کاربر" label-class="form-label"
+                <FormKit type="text" name="password" id="password" label="رمز کاربر" label-class="form-label"
                 input-class="form-control px-2  rounded-lg hover:shadow-xl hover:shadow-teal-500  focus:scale-105 transition-all duration-500" validation="required"
                 :validation-messages="{ required: 'فیلد پسورد الزامیست' }"
                 messages-class="form-text text-rose-700" />
@@ -44,7 +51,7 @@
             <div>
                 <FormKit
                   type="submit"
-                  help="You can use the default slot."
+                  help=""
                 input-class="bg-cyan-500 px-4 h-10  rounded-lg hover:shadow-xl hover:bg-zinc-200  hover:border-b-4 hover:border-sky-500  transition-all duration-100"
                 >
                  <span v-if="!btnLoader" >ثبت</span>
@@ -67,13 +74,12 @@
 import { reset } from "@formkit/core"
 
 const {public:{apiBase}} = useRuntimeConfig();
-
+const usersRoleTypeArray = ['admin','user']
 
 const btnLoader = ref(false)
 
 async function create(formData){
     console.log('click');
-    console.log(formData);
 
     try {
         btnLoader.value = true;

@@ -23,7 +23,7 @@ categoriesRouter.put('/edit-category/:id',(req,res)=>{
         categoryId:req.params.id,
         title:req.body.title,
         description :req.body.description,
-        icon:`@/src/assets/image/categories/+${req.body.icon}`,
+        icon:`@/src/assets/image/categories/${req.body.icon}`,
     }).then((res)=>{
         let response = {
             state:{err:0,msg:'دسته بندی با موفقیت ویرایش شد'}
@@ -56,18 +56,26 @@ categoriesRouter.post('/create',(req,res)=>{
         categoryId:req.body.categoryId,
         title:req.body.title,
         description :req.body.description,
-        icon:`@/src/assets/image/categories/+${req.body.icon}`,
+        icon:`@/src/assets/image/categories/${req.body.icon}`,
     }
 
     let newCategory = new categoryModel(categoryInfo)
   
-    newCategory.save().then(()=>{
-     console.log('new product created');
-   })
-   let response = {
-    state:{err:0,msg:'دسته بندی با موفقیت افزوده شد'}
-   }
-   res.json(response)
+    let response = {
+        state:{
+            err:0 ,
+        }
+      }
+      newCategory.save().then(()=>{
+         console.log('new category created');
+         response.state.msg = 'محصول با موفقیت افزوده شد'
+         res.json(response)
+       }).catch((err)=>{
+        let dataBaseresponse = err.message
+        response.state.msg = dataBaseresponse
+        response.state.err++
+           res.json(response)
+       })
 })
 
 

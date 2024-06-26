@@ -32,7 +32,7 @@
             <div>
                 <FormKit
                   type="submit"
-                  help="You can use the default slot."
+                  
                 input-class="bg-cyan-500 px-4 h-10  rounded-lg hover:shadow-xl hover:bg-zinc-200  hover:border-b-4 hover:border-sky-500  transition-all duration-100"
                 >
                  <span v-if="!btnLoader" >ثبت</span>
