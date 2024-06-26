@@ -48,7 +48,7 @@
                 messages-class="form-text text-danger" />
             </div>
             <div>
-                <FormKit type="number" name="dollerPrice" id="dollerPrice" label="دلاری قیمت" label-class="form-label"
+                <FormKit type="text" name="dollerPrice" id="dollerPrice" label="دلاری قیمت" label-class="form-label"
                 input-class="form-control px-2  rounded-lg hover:shadow-xl hover:shadow-teal-500  focus:scale-105 transition-all duration-500"
                  validation=""
                 :validation-messages="{ required: 'فیلد قیمت دلاری الزامیست' }"
@@ -63,7 +63,7 @@
             <div>
                 <FormKit
                   type="submit"
-                  help="You can use the default slot."
+                  help=""
                 input-class="bg-cyan-500 px-4 h-10  rounded-lg hover:shadow-xl hover:bg-zinc-200  hover:border-b-4 hover:border-sky-500  transition-all duration-100"
                 >
                  <span v-if="!btnLoader" >ثبت</span>
@@ -90,13 +90,15 @@ const productsTypeArray = [
                     'دسته گل',
                     'گیاهان آپارتمانی',
                     'باکس گل',
-                    'باکس توت فرنگی', 
+                    'رزجاویدان',
+                    'ارسالی های امروز'    
                   ]
 const productsTypeIdArray =[
                     {id:1,title:'دسته گل'},
-                    {id:1,title: 'گیاهان آپارتمانی'},
-                    {id:1,title:'باکس گل'},
-                    {id:1,title:'باکس توت فرنگی'}   
+                    {id:2,title: 'گیاهان آپارتمانی'},
+                    {id:3,title:'باکس گل'},
+                    {id:4,title:'رزجاویدان'},
+                    {id:5,title:'ارسالی های امروز'}      
 ]
 
 const btnLoader = ref(false)
@@ -122,12 +124,13 @@ const products = await useFetch(`${apiBase}/products/create`,{
         method:'POST',
         body:formData  
     }).then((res)=>{
-        console.log(res.data);
+        console.log(res);
+        toastr.success(res.data.value.state.msg);
     })
 /// use reset method to clear all input value of FormKit
         reset('createProductForm')
 /// create a tostr to show success massage 
-        toastr.success("ایجاد آدرس باموفقیت انجام شد");
+       
     } catch (error) {
 //    errors.value = Object.values(error.data.data.message).flat();
     console.log(error);
