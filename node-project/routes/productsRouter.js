@@ -7,13 +7,22 @@ const productsModel = require('../models/Products')
 console.log('use');
 // api
 
-productsRouter.get('/all-products',(req,res)=>{
-    console.log('productsRouter');
-    productsModel.find({}).then((allProducts)=>{
+productsRouter.post('/',(req,res)=>{
+    console.log('body:',req.body.categoryId);
+    productsModel.find(req.body.categoryId?{categoryId:req.body.categoryId} : {}).then((allProducts)=>{
         console.log('allproduct');
         res.json(allProducts)
     })
 })
+
+productsRouter.get('/:id',(req,res)=>{
+    console.log('productsRouter');
+    productsModel.find({id:req.params.id}).then((allProducts)=>{
+        console.log('allproduct');
+        res.json(allProducts)
+    })
+})
+
 
 productsRouter.put('/edit-product/:id',(req,res)=>{
     console.log('productsRouter');
@@ -53,9 +62,15 @@ productsRouter.delete('/delte-product/:id',(req,res)=>{
 
 // create a product in product model
 productsRouter.post('/create',(req,res)=>{
+
+
+
+
+try {
     let productInfo = {
         id:req.body.id,
         title:req.body.title,
+        description:req.body.description,
         category:req.body.type,
         categoryId:req.body.typeId,
         salePrice:req.body.salePrice,
@@ -67,14 +82,29 @@ productsRouter.post('/create',(req,res)=>{
     }
 
     let newProduct = new productsModel(productInfo)
-  
+  let response = {
+    state:{
+        err:0 ,
+    }
+  }
    newProduct.save().then(()=>{
      console.log('new product created');
+     response.state.msg = 'محصول با موفقیت افزوده شد'
+     res.json(response)
+   }).catch((err)=>{
+    let dataBaseresponse = err.message
+    response.state.msg = dataBaseresponse
+    response.state.err++
+       res.json(response)
    })
-   let response = {
-    state:{err:0,msg:'محصول با موفقیت افزوده شد'}
-   }
-   res.json(response)
+
+} catch (error) {
+    let response = {
+        state:{err:0,msg:'خطا'}
+       }
+       res.json(response)
+    res.send(error)
+}
 })
 
 
