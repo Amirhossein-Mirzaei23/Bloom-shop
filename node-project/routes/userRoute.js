@@ -14,6 +14,14 @@ userRoutes.get('/',(req,res)=>{
     })
 })
 
+userRoutes.get('/',(req,res)=>{
+    
+    console.log('Users fetch');
+    userModel.find({id:req.params.id}).then((user)=>{
+        console.log('allUsers');
+        res.json(user)
+    })
+})
 
 
 
@@ -55,19 +63,28 @@ userRoutes.post('/add',(req,res)=>{
         first_name:req.body.first_name,
         last_name:req.body.last_name,
         phoneNumber:req.body.phoneNumber,
+        role:req.body.role,
         password:req.body.password,
         address:req.body.address
     }
 
     let newUser = new userModel(userInfo)
   
-   newUser.save().then(()=>{
-     console.log('new product created');
-   })
-   let response = {
-    state:{err:0,msg:'محصول با موفقیت افزوده شد'}
-   }
-   res.json(response)
+    let response = {
+        state:{
+            err:0 ,
+        }
+      }
+      newUser.save().then(()=>{
+         console.log('new user created');
+         response.state.msg = 'کاربر با موفقیت افزوده شد'
+         res.json(response)
+       }).catch((err)=>{
+        let dataBaseresponse = err.message
+        response.state.msg = dataBaseresponse
+        response.state.err++
+           res.json(response)
+       })
 })
 
 
