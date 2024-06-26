@@ -79,12 +79,14 @@
                               </q-item>
                             </q-list>
                           </q-btn-dropdown>
-                        <q-btn  class="text-black"  color="bg-gray-400" label="دسته گل" />
+     <!-----                   <q-btn  class="text-black"  color="bg-gray-400" label="دسته گل" />
                         <q-btn  class="text-black"  color="bg-gray-400" label="گیاهان اپارتمانی" />
                         <q-btn  class="text-black"  color="bg-gray-400" label="رز جاویدان" />
                         <q-btn  class="text-black"  color="bg-gray-400" label="ارسالی های امروز" />
-                   
-                      </q-btn-group>
+                   ------->
+                   <q-btn  v-for="category in categoriesTilte" :key="category"  :to="`/productList/${category.categoryId}`"  class="text-black"  color="bg-gray-400" :label="category.title" />
+                   <q-btn  class="text-black" to="/admin/create"  color="bg-gray-400" label="ایجاد محصول" />
+                  </q-btn-group>
                     </div>
                  
             
@@ -102,7 +104,24 @@
 </template>
 
 <script setup>
+const {public:{apiBase}} = useRuntimeConfig();
 
+import axios from "axios";
+
+
+const categoriesTilte = ref()
+
+
+function getCategoryTitle() {
+    axios.get(`${apiBase}/categories`).then((res)=>{
+        console.log(res.data);
+        categoriesTilte.value = res.data
+        
+    })}
+
+onBeforeMount(()=>{
+  getCategoryTitle()
+})
 </script>
 
 <style lang="scss" scoped>
