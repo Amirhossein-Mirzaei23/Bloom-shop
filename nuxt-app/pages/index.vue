@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container m-auto" >
 
 <Slider ></Slider>
 <tab-panel/>

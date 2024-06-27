@@ -13,8 +13,9 @@
         arrows
         :dark="drakMode"
         transition-duration=1300
-        height="500px"
-        class=" rounded-borders"
+       
+
+        class=" rounded-borders h-80 md:h-500"
       >
         <q-carousel-slide :name="1" class="column no-wrap">
           <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap">
