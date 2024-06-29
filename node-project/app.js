@@ -10,6 +10,8 @@ const productsRouter= require('./routes/productsRouter')
 const userModel = require('./models/Users')
 const productsModel = require('./models/Products')
 const categoryModel = require('./models/categories')
+const multer  = require('multer')
+const upload = multer({ dest: 'uploads/' })
 
 const mongoose = require('mongoose');
 
@@ -35,6 +37,13 @@ mongoose.Promise = global.Promise
  app.use('/api/users',userRoutes)
  app.use('/api/categories',categoriesRouter)
  app.use('/api/products',productsRouter)
+
+ app.use(multer({ dest: `./uploads/`,
+  rename: function (fieldname, filename) {
+    return filename;
+  },
+}));
+
 
  //create category
  let categoryInfo = {categoryId:1,title:'دسته گل',description :'یک گیاه گلدار ',icon:'@/src/assets/image/categories/image2.png'}

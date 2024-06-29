@@ -54,9 +54,10 @@ let productsSchema = mongoose.Schema({
         trim:true,
         lowerCase:true
     },
-    image:{
-        type:String
-    },
+    image: { 
+        data: Buffer, 
+        contentType: String 
+     }
 
 
     
