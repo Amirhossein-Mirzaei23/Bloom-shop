@@ -20,8 +20,10 @@ let categoriesSchema = mongoose.Schema({
        
     },
     icon:{
-        type:String,
-        required:true
+       
+            data: Buffer, 
+            contentType: String 
+       
     }
 })
 

@@ -1,5 +1,5 @@
 const express = require('express')
-
+const fs = require('fs');
 const categoriesRouter = express.Router()
 
 const categoryModel = require('../models/categories')
@@ -24,6 +24,8 @@ categoriesRouter.put('/edit-category/:id',(req,res)=>{
         title:req.body.title,
         description :req.body.description,
         icon:`@/src/assets/image/categories/${req.body.icon}`,
+        //  image,data : fs.readFileSync(req.files.userPhoto.path),
+        //  image,contentType : 'image/png',
     }).then((res)=>{
         let response = {
             state:{err:0,msg:'دسته بندی با موفقیت ویرایش شد'}
@@ -57,6 +59,8 @@ categoriesRouter.post('/create',(req,res)=>{
         title:req.body.title,
         description :req.body.description,
         icon:`@/src/assets/image/categories/${req.body.icon}`,
+        //  image,data : fs.readFileSync(req.files.userPhoto.path),
+        //  image,contentType : 'image/png',
     }
 
     let newCategory = new categoryModel(categoryInfo)
