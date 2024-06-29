@@ -9,7 +9,11 @@
     <LayoutFooter />
   </div>
 </template>
+<script>
+import 'animate.css';
+</script>
 <style>
+
 .bg-main{
   background-image: url('assets/image/backGround5.avif');
   background-attachment: fixed;
