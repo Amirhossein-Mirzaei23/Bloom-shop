@@ -1,5 +1,5 @@
 const express = require('express')
-
+const fs = require('fs');
 const productsRouter = express.Router()
 // const multer = require('multer');
 
@@ -38,6 +38,8 @@ productsRouter.put('/edit-product/:id',(req,res)=>{
         dollerPrice:req.body.dollerPrice,
         immediateDelivery:req.body.immediateDelivery,
         image: req.body.icon?  `@/src/assets/image/products/+${req.body.icon}`:`@/src/assets/image/noImage.png` ,
+      //  image,data : fs.readFileSync(req.files.userPhoto.path),
+      //  image,contentType : 'image/png',
         flowerPot:req.body.flowerPot
     }).then((res)=>{
         let response = {
@@ -78,6 +80,8 @@ try {
         dollerPrice:req.body.dollerPrice,
         immediateDelivery:req.body.immediateDelivery,
         image: req.body.icon?  `@/src/assets/image/products/+${req.body.icon}`:`@/src/assets/image/noImage.png` ,
+            //  image,data : fs.readFileSync(req.files.userPhoto.path),
+      //  image,contentType : 'image/png',
         flowerPot:req.body.flowerPot
     }
 
