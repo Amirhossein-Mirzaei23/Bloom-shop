@@ -22,7 +22,7 @@
                 messages-class="form-text text-danger" />
             </div>
             <div>
-                <FormKit type="text"  name="title" id="title" label="رمز عبور" label-class="form-label"
+                <FormKit type="text"  name="title" id="title" label="رمز عبور" label-class="form-label py-5"
                 input-class="form-control px-2  rounded-lg hover:shadow-xl hover:shadow-teal-500  focus:scale-105 transition-all duration-500" validation="required"
                 :validation-messages="{ required: 'فیلد عنوان الزامیست' }"
                 messages-class="form-text text-danger" />
