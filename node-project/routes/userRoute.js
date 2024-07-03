@@ -23,10 +23,10 @@ userRoutes.get('/',(req,res)=>{
     })
 })
 
+// create a route to could update user data
 
-
-userRoutes.put('/edit-product/:id',(req,res)=>{
-    console.log('productsRouter');
+userRoutes.put('/edit-user/:id',(req,res)=>{
+    console.log('user router');
     userModel.findOneAndUpdate(
         {id: req.params.id},
         {

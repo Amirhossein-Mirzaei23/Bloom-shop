@@ -14,7 +14,7 @@ categoriesRouter.get('/',(req,res)=>{
         res.json(category)
     })
 })
-
+// create a route to could update categories
 categoriesRouter.put('/edit-category/:id',(req,res)=>{
     console.log('productsRouter');
     categoryModel.findOneAndUpdate(

@@ -23,7 +23,7 @@ productsRouter.get('/:id',(req,res)=>{
     })
 })
 
-
+// create a route to could update product
 productsRouter.put('/edit-product/:id',(req,res)=>{
     console.log('productsRouter');
      productsModel.findOneAndUpdate(

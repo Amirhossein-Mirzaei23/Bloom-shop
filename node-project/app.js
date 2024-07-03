@@ -6,7 +6,7 @@ const bodyParser = require('body-parser')
 const userRoutes= require('./routes/userRoute')
 const categoriesRouter= require('./routes/categoriesRouter')
 const productsRouter= require('./routes/productsRouter')
-// models
+// add models
 const userModel = require('./models/Users')
 const productsModel = require('./models/Products')
 const categoryModel = require('./models/categories')
