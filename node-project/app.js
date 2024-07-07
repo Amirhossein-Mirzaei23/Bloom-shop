@@ -12,6 +12,16 @@ const productsModel = require('./models/Products')
 const categoryModel = require('./models/categories')
 const multer  = require('multer')
 const upload = multer({ dest: 'uploads/' })
+const session = require('express-session');
+const passport = require('./config/passport');
+app.use(session({ secret: 'your_secret_key', resave: false, saveUninitialized: false }));
+
+// Initialize Passport and session middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+// ... (your Express routes)
+
 
 const mongoose = require('mongoose');
 
@@ -38,11 +48,11 @@ mongoose.Promise = global.Promise
  app.use('/api/categories',categoriesRouter)
  app.use('/api/products',productsRouter)
 
- app.use(multer({ dest: `./uploads/`,
-  rename: function (fieldname, filename) {
-    return filename;
-  },
-}));
+//  app.use(multer({ dest: `./uploads/`,
+//   rename: function (fieldname, filename) {
+//     return filename;
+//   },
+// }));
 
 
  //create category
