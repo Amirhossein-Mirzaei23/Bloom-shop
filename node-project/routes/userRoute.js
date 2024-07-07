@@ -2,7 +2,7 @@ const express = require('express')
 
 const userRoutes = express.Router()
 const userModel = require('../models/Users')
-
+const passport = require('../config/passport');
 // api
 
 userRoutes.get('/',(req,res)=>{
@@ -55,11 +55,16 @@ userRoutes.delete('/delte-product/:id',(req,res)=>{
     
     })
 })
+userRoutes.post('/login', passport.authenticate('local', {
+    successRedirect: '/', // Redirect to protected area on success
+    failureRedirect: '/auth/login' // Redirect on failure
+  }));
 
 // create a product in product model
 userRoutes.post('/add',(req,res)=>{
     let userInfo = {
         userId:req.body.userId,
+        username:req.body.username,
         first_name:req.body.first_name,
         last_name:req.body.last_name,
         phoneNumber:req.body.phoneNumber,
