@@ -1,5 +1,5 @@
 <template>
-    <div class="text-black">
+    <div class="text-black bg-palte-two-white">
     <div class="flex justify-between flex-nowrap flex-row h-16  mx-auto text-sm text-nowrap font-extralight " >
      
         <div class="col-span-2  max-md:hidden" > 
