@@ -21,7 +21,8 @@ export default defineNuxtConfig({
   },
   runtimeConfig:{
     public:{
-      apiBase:'https://bloom-gift.liara.run/api'
+     /// apiBase:'https://bloom-gift.liara.run/api'
+     apiBase:'http://localhost:5000/api'
     }
   }
 })
