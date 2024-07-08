@@ -8,6 +8,11 @@ let userSchema = mongoose.Schema({
         trim:true,
         
     },
+    username:{
+        type:String,
+        require:true,
+        trim:true
+    },
 first_name:{
         type:String,
         required:true,

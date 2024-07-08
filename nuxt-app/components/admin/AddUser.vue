@@ -42,6 +42,12 @@
                 messages-class="form-text text-rose-700" />
             </div>
             <div>
+                <FormKit type="text" name="username" id="username" label="نام کاربری" label-class="form-label"
+                input-class="form-control px-2  rounded-lg hover:shadow-xl hover:shadow-teal-500  focus:scale-105 transition-all duration-500" validation="required"
+                :validation-messages="{ required: 'فیلد نام کاربری الزامیست' }"
+                messages-class="form-text text-rose-700" />
+            </div>
+            <div>
                 <FormKit type="text" name="password" id="password" label="رمز کاربر" label-class="form-label"
                 input-class="form-control px-2  rounded-lg hover:shadow-xl hover:shadow-teal-500  focus:scale-105 transition-all duration-500" validation="required"
                 :validation-messages="{ required: 'فیلد پسورد الزامیست' }"
@@ -93,9 +99,9 @@ const newUser = await useFetch(`${apiBase}/users/add`,{
         console.log(res.data);
     })
 /// use reset method to clear all input value of FormKit
-        reset('createProductForm')
+     //   reset('createProductForm')
 /// create a tostr to show success massage 
-        toastr.success("ایجاد آدرس باموفقیت انجام شد");
+        toastr.success("ایجاد کاربر باموفقیت انجام شد");
     } catch (error) {
 //    errors.value = Object.values(error.data.data.message).flat();
     console.log(error);
