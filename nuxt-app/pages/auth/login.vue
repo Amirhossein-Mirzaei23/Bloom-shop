@@ -1,5 +1,5 @@
 <template>
-    <div class="w-screen h-screen bg-gradient-to-tr from-zinc-50 via-gray-600 to-zinc-50 ">
+    <div class="w-screen h-screen bg-gradient-to-tr from-palte-two-2 to-palte-one-2 ">
         <!-- a component to handel and show error massage to the user--->
         <div v-if="errors.length > 0" class="alert alert-danger">
             <ul class="mb-0">
@@ -8,23 +8,23 @@
         </div>
         
             
-            <FormKit type="form"  @submit="login" id="createProductForm" :incomplete-message="true" :actions="false">
+            <FormKit type="form"  @submit="submitLogin" id="createProductForm" :incomplete-message="true" :actions="false">
         <div class="w-4/12 m-auto  flex flex-col" >
-            <div class="animationScale animate-pulse  bg-gradiant-top -mb-5 w-24 h-24  rounded-full self-start mt-20 ">
+            <div class="animationScale animate-pulse  bg-gradient-to-t from-palte-two-white to-palte-one-1 -mb-5 w-24 h-24  rounded-full self-start mt-20 ">
                 
         
             </div>
-            <div class="bg-gray-500 m-auto w-9/12 flex items-center gap-10 p-3 rounded-lg flex-col " >
+            <div class="bg-gradient-to-l from-white to-black bg-blend-multiply m-auto w-9/12 flex items-center gap-10 p-3 rounded-lg flex-col " >
             <div>
-                <FormKit type="text"  name="title" id="title" label="نام کاربری" label-class="form-label"
+                <FormKit type="text" v-model="cellphone"  name="userName" id="userName" label="نام کاربری" label-class="form-label"
                 input-class="form-control px-2  rounded-lg hover:shadow-xl hover:shadow-teal-500  focus:scale-105 transition-all duration-500" validation="required"
-                :validation-messages="{ required: 'فیلد عنوان الزامیست' }"
+                :validation-messages="{ required: 'فیلد نام کاربری الزامیست' }"
                 messages-class="form-text text-danger" />
             </div>
             <div>
-                <FormKit type="text"  name="title" id="title" label="رمز عبور" label-class="form-label py-5"
+                <FormKit type="text"  name="password" id="password" label="رمز عبور" label-class="form-label py-5"
                 input-class="form-control px-2  rounded-lg hover:shadow-xl hover:shadow-teal-500  focus:scale-105 transition-all duration-500" validation="required"
-                :validation-messages="{ required: 'فیلد عنوان الزامیست' }"
+                :validation-messages="{ required: 'فیلد رمز عبور الزامیست' }"
                 messages-class="form-text text-danger" />
             </div>
             <div class="w-full " >
@@ -52,7 +52,7 @@
                
             </div>
         </div>
-        <div class="bg-gradiant-bottom animationScale -mt-5  w-24 h-24  rounded-full self-end"
+        <div class="bg-gradient-to-t from-palte-two-2 to-yellow-200 animationScale -mt-5  w-24 h-24  rounded-full self-end"
        
         >
        
@@ -75,10 +75,10 @@ const cellphone = ref(null)
 
 const errors = ref([]);
 const loading = ref(false);
+const {public:{apiBase}} = useRuntimeConfig();
 
 
-
-async function login() {
+async function submitLogin(formData) {
     if (cellphone.value == null) {
         toastr.warning(' ورود شماره موبایل الزامی است ')
     return
@@ -87,31 +87,36 @@ async function login() {
 
     const pattern = /^(\+98|0)?9\d{9}$/;
     if (!pattern.test(cellphone.value)) {
+        console.log(cellphone.value);
         toastr.error(' شماره موبایل صحیح نمیباشد')
     return
     }
-
+console.log(formData);
     try {
-        loading.value = true;
-        errors.value = [];
-
-        const data = await $fetch('/api/auth/login', {
-            method: 'POST',
-            body: { cellphone: cellphone.value }
-        })
-
-        console.log(data);
-        emit('showOtpFormEmit')
-        toastr.info('کد ورود برای شما ارسال شده است')
-        
-    } catch (error) {
-        errors.value = Object.values(error.data.data.message).flat();
-    } finally {
-        loading.value = false;
+        btnLoader.value = true;
+      //  errors.value = [];
+/// send new data to create a new product in the server side
+console.log(formData);
+ await useFetch(`${apiBase}/users/login`,{
+        method:'POST',
+        body:formData  
+    }).then((res)=>{
+        console.log(res);
+        toastr.success(res.data.value.state.msg);
+    })
+/// use reset method to clear all input value of FormKit
+        reset('createProductForm')
+/// create a tostr to show success massage 
        
+    } catch (error) {
+//    errors.value = Object.values(error.data.data.message).flat();
+    console.log(error);
+    } finally {
+  btnLoader.value = false;
     }
 
 }
+
 
 
 </script>
