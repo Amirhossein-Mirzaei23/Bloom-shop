@@ -2,7 +2,8 @@ const express = require('express')
 
 const userRoutes = express.Router()
 const userModel = require('../models/Users')
-const passport = require('../config/passport');
+///const passport = require('../config/passport');
+const passport = null
 // api
 
 userRoutes.get('/',(req,res)=>{
