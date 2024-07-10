@@ -13,7 +13,8 @@ const categoryModel = require('./models/categories')
 const multer  = require('multer')
 const upload = multer({ dest: 'uploads/' })
 const session = require('express-session');
-const passport = require('./config/passport');
+// const passport = require('./config/passport');
+const passport = null
 app.use(session({ secret: 'your_secret_key', resave: false, saveUninitialized: false }));
 
 // Initialize Passport and session middleware

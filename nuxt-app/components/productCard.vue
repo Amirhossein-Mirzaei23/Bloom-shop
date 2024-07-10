@@ -16,7 +16,7 @@
 </div>
 
 
-<div class="mx-auto mt-5" ><button  @click="getData" class="font-extralight text-sm opacity-0 group-hover:opacity-100 transition-all duration-500 animate-bounce bg-rose-700 rounded-2xl  mx-auto text-nowrap px-2 py-1" >سفارش این محصول</button></div>       
+<div class="mx-auto mt-5" ><button  @click="getData" class="font-extralight text-sm opacity-0 group-hover:opacity-100  animate__animated animate__pulse animate__infinite	 bg-rose-700 rounded-2xl  mx-auto text-nowrap px-2 py-1" >سفارش این محصول</button></div>       
 </div>
 </template>
 
