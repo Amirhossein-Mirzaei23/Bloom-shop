@@ -9,11 +9,19 @@
     <LayoutFooter />
   </div>
 </template>
+<script>
+import 'animate.css';
+</script>
 <style>
+
 .bg-main{
   background-image: url('assets/image/backGround5.avif');
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.github-backgound{
+  background-image: url(/assets/gifs/auth-page-bg.gif);
 }
 </style>

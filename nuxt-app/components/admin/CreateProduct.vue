@@ -37,7 +37,7 @@
             <div>
                 <FormKit type="number" name="salePrice" id="salePrice" label="قیمت" label-class="form-label"
                 input-class="form-control px-2  rounded-lg hover:shadow-xl hover:shadow-teal-500  focus:scale-105 transition-all duration-500" validation="required"
-                :validation-messages="{ required: 'فیلد قمیت الزامیست' }"
+                :validation-messages="{ required: 'فیلد قیمت الزامیست' }"
                 messages-class="form-text text-danger" />
             </div>
             <div>

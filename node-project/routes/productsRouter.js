@@ -23,7 +23,7 @@ productsRouter.get('/:id',(req,res)=>{
     })
 })
 
-
+// create a route to could update product
 productsRouter.put('/edit-product/:id',(req,res)=>{
     console.log('productsRouter');
      productsModel.findOneAndUpdate(
@@ -49,7 +49,7 @@ productsRouter.put('/edit-product/:id',(req,res)=>{
     })
 
 })
-
+// create a route to delete product from model 
 productsRouter.delete('/delte-product/:id',(req,res)=>{
     console.log('productsRouter');
     productsModel.findOneAndDelete( {id:req.params.id} ).then((allProducts)=>{
