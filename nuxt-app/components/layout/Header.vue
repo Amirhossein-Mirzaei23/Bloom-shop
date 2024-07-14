@@ -1,12 +1,14 @@
 <template>
-    <div class="text-black bg-palte-two-white">
+
+    <div class="text-white github-backgound">
+
     <div class="flex justify-between flex-nowrap flex-row h-16  mx-auto text-sm text-nowrap font-extralight " >
      
         <div class="col-span-2  max-md:hidden" > 
                     <div class=" w-full text-xs   mx-auto ">
                       <q-btn-group class="xl:mr-5 lg:mr-1 mr-0 rounded-lg  hover:shadow-xl  hover:shadow-teal-400 transition-all duration-500 mt-4" >
-                        <q-btn  class="text-black text-xs lg:text-sm w-16 lg:w-20 max-lg:hidden"  to="/"  color="bg-gray-400" label="صفحه اصلی" />
-                        <q-btn-dropdown auto-close class="text-black text-xs lg:text-sm  md:w-28 lg:w-auto "  color="primary" label="فروشگاه" split>
+                        <q-btn  class="text-white text-xs lg:text-sm w-16 lg:w-20 max-lg:hidden"  to="/"  color="bg-gray-400" label="صفحه اصلی" />
+                        <q-btn-dropdown auto-close class="text-white text-xs lg:text-sm  md:w-28 lg:w-auto "  color="primary" label="فروشگاه" split>
                             <!-- dropdown content goes here -->
                             <q-list class="bg-gradient-to-r from-gray-400 via-white to-gray-200  " padding style="width: 250px">
                              
@@ -38,8 +40,8 @@
                             </q-list>
                           </q-btn-dropdown>
    
-                   <q-btn  v-for="category in categoriesTilte" :key="category"  :to="`/productList/${category.categoryId}`"  class="text-black  text-xs lg:text-sm md:w-20 lg:w-auto "  color="bg-gray-400" :label="category.title" />
-                   <q-btn  class="text-black  text-xs lg:text-sm " to="/admin/create"  color="bg-gray-400" label="ایجاد محصول" />
+                   <q-btn  v-for="category in categoriesTilte" :key="category"  :to="`/productList/${category.categoryId}`"  class="text-white  text-xs lg:text-sm md:w-20 lg:w-auto "  color="bg-gray-400" :label="category.title" />
+                   <q-btn  class="text-white  text-xs lg:text-sm " to="/admin/create"  color="bg-gray-400" label="ایجاد محصول" />
                   </q-btn-group>
                     </div>
         </div>
@@ -64,7 +66,10 @@
 
 <script setup>
 const {public:{apiBase}} = useRuntimeConfig();
-
+const userStore = useUserStore();
+console.log(userStore.role );
+const isAdmin = userStore.role == 'admin'? true:false
+console.log(isAdmin);
 import axios from "axios";
 
 

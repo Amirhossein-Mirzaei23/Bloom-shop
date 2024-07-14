@@ -1,6 +1,8 @@
 <template>
-    <div class="p-5" style="direction: rtl" >
-    <div class="rounded-xl  overflow-hidden" style="height:400px; width:400px;">
+
+    <div class="p-5"  >
+    <div class="rounded-xl overflow-hidden" style="height:400px; width:400px;" dir="rtl" >
+
         <l-map ref="map"   v-model:center="center" :use-global-leaflet="false"  :zoom="12"  >
 <l-tile-layer
 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

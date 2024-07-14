@@ -2,8 +2,10 @@ const express = require('express')
 
 const userRoutes = express.Router()
 const userModel = require('../models/Users')
-///const passport = require('../config/passport');
-const passport = null
+
+const passport = require('../config/passport');
+//const passport = null
+
 // api
 
 userRoutes.get('/',(req,res)=>{
@@ -15,10 +17,10 @@ userRoutes.get('/',(req,res)=>{
     })
 })
 
-userRoutes.get('/',(req,res)=>{
+userRoutes.get('/userData',(req,res)=>{
     
     console.log('Users fetch');
-    userModel.find({id:req.params.id}).then((user)=>{
+    userModel.find({id:req.body.id}).then((user)=>{
         console.log('allUsers');
         res.json(user)
     })
@@ -28,6 +30,14 @@ userRoutes.get('/',(req,res)=>{
 
 userRoutes.put('/edit-user/:id',(req,res)=>{
     console.log('user router');
+
+    let response = {
+        state:{
+            err:0 ,
+        }
+      }
+
+
     userModel.findOneAndUpdate(
         {id: req.params.id},
         {
@@ -56,10 +66,59 @@ userRoutes.delete('/delte-product/:id',(req,res)=>{
     
     })
 })
-userRoutes.post('/login', passport.authenticate('local', {
-    successRedirect: '/', // Redirect to protected area on success
-    failureRedirect: '/auth/login' // Redirect on failure
-  }));
+
+/// userRoutes.post('/login', passport.authenticate('local', {
+///     successRedirect: '/', // Redirect to protected area on success
+///     failureRedirect: '/auth/login' // Redirect on failure
+///   }));
+userRoutes.post('/auth-login',(req,res)=>{
+    let response = {
+        state:{
+            err:0 ,
+        }
+      }
+    userModel.find({phoneNumber:req.body.phoneNumber}).then((user)=>{
+        console.log('auth user');
+      
+       
+       if (user[0]) {
+       if (user[0].password == req.body.password) {
+       console.log(user[0].password, req.body.password);
+       res.status(200)
+       response.data = user
+        response.state.msg ='ورود با موفقیت انجام شد'
+        res.json(response)
+        return
+       } else {
+
+        res.status(401)
+        response.state.msg ='رمز عبور معتبر نمیباشد'
+        response.state.err = response.state.err + 1
+        res.json(response)
+        return
+       }
+
+       } else {
+        res.status(422)
+        response.state.msg = 'نام کاربری یافت نشد'
+        response.state.err = response.state.err + 1
+        res.json(response)
+        return
+       }
+
+      
+       console.log(response);
+     
+        
+
+      }).catch((err)=>{
+       let dataBaseresponse = err.message
+       response.state.msg = dataBaseresponse
+       response.state.err++
+          res.json(response)
+      })
+})
+
 
 // create a product in product model
 userRoutes.post('/add',(req,res)=>{

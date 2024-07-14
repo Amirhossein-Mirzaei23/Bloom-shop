@@ -13,8 +13,10 @@ const categoryModel = require('./models/categories')
 const multer  = require('multer')
 const upload = multer({ dest: 'uploads/' })
 const session = require('express-session');
-// const passport = require('./config/passport');
-const passport = null
+
+ const passport = require('./config/passport');
+// const passport = null
+
 app.use(session({ secret: 'your_secret_key', resave: false, saveUninitialized: false }));
 
 // Initialize Passport and session middleware
@@ -26,6 +28,7 @@ app.use(passport.session());
 
 const mongoose = require('mongoose');
 
+
  app.use(cors())
  app.use(express.static(path.join(__dirname, 'public')));
 
@@ -35,8 +38,11 @@ const mongoose = require('mongoose');
 // 
 
 
-mongoose.connect('mongodb://127.0.0.1:27017/bloom-shop')
-  .then((res) => console.log('Connected!'));
+mongoose.connect('mongodb://root:cRMBisVqmU381uCWrAQsdEp4@lhotse.liara.cloud:32971/my-app?authSource=admin')
+  .then((res) => console.log('Connected!')).catch((err)=>{
+    console.log(err);
+    console.log('connecttion feild');
+  });
 mongoose.Promise = global.Promise
 
 

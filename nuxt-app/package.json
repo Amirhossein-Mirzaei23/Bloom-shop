@@ -11,17 +11,24 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
+
+    "@pinia/nuxt": "^0.5.1",
+
     "animate.css": "^4.1.1",
     "axios": "^1.7.2",
     "bootstrap-icons": "^1.11.3",
     "nuxt": "^3.11.2",
     "nuxt-icons": "^3.2.1",
     "nuxt-quasar-ui": "^2.1.2",
+    "pinia": "^2.1.7",
     "toastr": "^2.1.4",
+    "vite": "^4.4",
     "vue": "^3.4.27",
+    "vue-leaflet": "^0.1.0",
     "vue-router": "^4.3.2"
   },
   "devDependencies": {
+    "@element-plus/nuxt": "^1.0.9",
     "@formkit/nuxt": "^1.6.5",
     "@fortawesome/free-brands-svg-icons": "^6.5.2",
     "@fortawesome/free-regular-svg-icons": "^6.5.2",
@@ -33,5 +40,8 @@
     "leaflet": "^1.9.4",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.3"
-  }
+  },
+  "overrides": {
+  "vue": "latest"
+}
 }

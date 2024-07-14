@@ -20,4 +20,8 @@ import 'animate.css';
   background-size: cover;
   background-repeat: no-repeat;
 }
+
+.github-backgound{
+  background-image: url(/assets/gifs/auth-page-bg.gif);
+}
 </style>
