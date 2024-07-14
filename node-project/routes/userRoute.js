@@ -2,8 +2,10 @@ const express = require('express')
 
 const userRoutes = express.Router()
 const userModel = require('../models/Users')
+
 const passport = require('../config/passport');
 //const passport = null
+
 // api
 
 userRoutes.get('/',(req,res)=>{
@@ -28,11 +30,13 @@ userRoutes.get('/userData',(req,res)=>{
 
 userRoutes.put('/edit-user/:id',(req,res)=>{
     console.log('user router');
+
     let response = {
         state:{
             err:0 ,
         }
       }
+
 
     userModel.findOneAndUpdate(
         {id: req.params.id},
@@ -62,6 +66,7 @@ userRoutes.delete('/delte-product/:id',(req,res)=>{
     
     })
 })
+
 /// userRoutes.post('/login', passport.authenticate('local', {
 ///     successRedirect: '/', // Redirect to protected area on success
 ///     failureRedirect: '/auth/login' // Redirect on failure
@@ -113,6 +118,7 @@ userRoutes.post('/auth-login',(req,res)=>{
           res.json(response)
       })
 })
+
 
 // create a product in product model
 userRoutes.post('/add',(req,res)=>{

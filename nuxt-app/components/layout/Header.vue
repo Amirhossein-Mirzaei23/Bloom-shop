@@ -1,5 +1,7 @@
 <template>
+
     <div class="text-white github-backgound">
+
     <div class="flex justify-between flex-nowrap flex-row h-16  mx-auto text-sm text-nowrap font-extralight " >
      
         <div class="col-span-2  max-md:hidden" > 

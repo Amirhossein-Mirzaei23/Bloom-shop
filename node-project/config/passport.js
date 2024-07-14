@@ -5,7 +5,9 @@ console.log('pasport js');
 passport.use(new LocalStrategy({
   usernameField: 'username',
   passwordField: 'password'
+
 }, (username, password, done) => {
+
   // Find the user by username
   console.log('user name',username);
   const user = users.find(u => u.username === username);

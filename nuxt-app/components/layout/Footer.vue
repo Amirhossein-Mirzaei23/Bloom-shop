@@ -1,4 +1,5 @@
 <template>
+
     <div class="github-backgound bg-opacity-60 w-screen " dir="rtl" > 
      <div class="w-11/12 m-auto py-10 max-lg:px-10 bg-zinc-50 rounded-2xl grid grid-cols-2 lg:grid-cols-3 bg-opacity-10" >
     
@@ -54,6 +55,7 @@
         </div>
 
      </div>
+
 
     </div>
 </template>
