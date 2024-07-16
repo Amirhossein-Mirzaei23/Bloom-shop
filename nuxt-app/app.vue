@@ -4,7 +4,7 @@
     <LayoutHeader />
     <!--use default nuxt loading page component--->
     <NuxtLoadingIndicator />
-    <NuxtPage />
+    <NuxtPage class="py-16" />
     <!--footer lay out--->
     <LayoutFooter />
   </div>
