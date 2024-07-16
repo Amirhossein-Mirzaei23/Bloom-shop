@@ -11,7 +11,10 @@
 <script setup>
 import {faGithub } from '@fortawesome/free-brands-svg-icons'
 import {faCircle, faAddressBook} from '@fortawesome/free-solid-svg-icons'
-
+import { reloadNuxtApp } from 'nuxt/app';
+onMounted(()=>{
+    reloadNuxtApp();
+})
 </script>
 
 <style lang="scss" scoped>
