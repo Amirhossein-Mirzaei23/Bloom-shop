@@ -1,7 +1,7 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const users = require('../models/Users'); // Replace with your database connection
-console.log('pasport js');
+
 passport.use(new LocalStrategy({
   usernameField: 'username',
   passwordField: 'password'
