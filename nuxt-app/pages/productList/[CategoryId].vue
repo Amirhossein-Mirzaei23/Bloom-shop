@@ -1,5 +1,5 @@
 <template>
-    <div class="container  mt-5 mx-auto " >
+    <div class="container min-h-screen mt-5 mx-auto " >
         <div class="mx-auto mb-5" >
             <h1 class="mx-auto text-center font-bold text-2xl" >{{pageTilte}}</h1>
         </div>
@@ -54,7 +54,7 @@ try {
     }).then((res)=>{
         
         productsData.value = res.data
-        console.log(productsData.value);
+        
         toastr.success("  باموفقیت انجام شد");
     })
 
@@ -77,7 +77,7 @@ let pageTitleArray= [
 
 function pageTitleHandeler() {
     axios.get(`${apiBase}/categories`).then((res)=>{
-        console.log(res.data);
+      
         res.data.map(category=>{
            if ( category.categoryId == router.params.CategoryId) {
             pageTilte.value = category.title

@@ -3,14 +3,12 @@ const fs = require('fs');
 const categoriesRouter = express.Router()
 
 const categoryModel = require('../models/categories')
-console.log('use cate');
+
 // api
 
 categoriesRouter.get('/',(req,res)=>{
-    
-    console.log('categoriesRouter');
     categoryModel.find({}).then((category)=>{
-        console.log('allUsers');
+       
         res.json(category)
     })
 })

@@ -4,6 +4,7 @@ const userRoutes = express.Router()
 const userModel = require('../models/Users')
 
 const passport = require('../config/passport');
+const crypto = require("crypto");
 //const passport = null
 
 // api
@@ -17,13 +18,41 @@ userRoutes.get('/',(req,res)=>{
     })
 })
 
-userRoutes.get('/userData',(req,res)=>{
-    
-    console.log('Users fetch');
-    userModel.find({id:req.body.id}).then((user)=>{
-        console.log('allUsers');
-        res.json(user)
-    })
+userRoutes.post('/userData',(req,res)=>{
+    let response = {
+        state:{
+            err:0 ,
+        },
+        data:null
+      }
+      console.log("req.params:",req.params,'req.body:',req.body);
+
+    if(!req.body.username){
+
+        response.state.err++
+        response.state.msg = 'پارامتر username یافت نشد'
+        res.status(484)
+        res.json(response)
+        return
+       
+    }else{
+        console.log(typeof(req.body.username));
+        userModel.find({username:req.body.username}).then((user)=>{
+            console.log('User data:',user);
+            response.data = user
+            res.json(response)
+            return
+        }).catch((err)=>{
+            let dataBaseresponse = err.message
+            response.state.err++
+            response.state.msg = dataBaseresponse
+            res.status(422)
+            res.json(response)
+            
+        })
+       
+    }
+   
 })
 
 // create a route to could update user data
@@ -122,17 +151,18 @@ userRoutes.post('/auth-login',(req,res)=>{
 
 // create a product in product model
 userRoutes.post('/add',(req,res)=>{
+    console.log('add user');
+    let uuid = crypto.randomUUID();
     let userInfo = {
-        userId:req.body.userId,
+        userId:uuid,
         username:req.body.username,
-        first_name:req.body.first_name,
-        last_name:req.body.last_name,
+        name:req.body.name,
         phoneNumber:req.body.phoneNumber,
-        role:req.body.role,
+        role:req.body.role || 'user',
         password:req.body.password,
         address:req.body.address
     }
-
+    console.log(userInfo);
     let newUser = new userModel(userInfo)
   
     let response = {
@@ -145,9 +175,11 @@ userRoutes.post('/add',(req,res)=>{
          response.state.msg = 'کاربر با موفقیت افزوده شد'
          res.json(response)
        }).catch((err)=>{
+        console.log('no creaetd user');
         let dataBaseresponse = err.message
         response.state.msg = dataBaseresponse
         response.state.err++
+        res.status(422)
            res.json(response)
        })
 })
