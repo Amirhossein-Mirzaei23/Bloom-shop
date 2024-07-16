@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 // create a mongoose schema
 let userSchema = mongoose.Schema({
     userId:{
-        type:Number,
+        type:String,
         required:true,
         trim:true,
         
@@ -13,13 +13,7 @@ let userSchema = mongoose.Schema({
         require:true,
         trim:true
     },
-first_name:{
-        type:String,
-        required:true,
-        trim:true,
-        lowerCase:true
-    },
-    last_name:{
+   name:{
         type:String,
         required:true,
         trim:true,

@@ -1,39 +1,49 @@
 import axios from "axios";
+import { useUserStore } from "~/store/userStore";
+import { userAuth } from "#imports";
 
 export default defineNuxtRouteMiddleware((to, from,context) => {
-   // if (to.params.id === '1') {
-   //   return abortNavigation()
-   // }
-    // In a real app you would probably not redirect every route to `/`
-    // however it is important to check `to.path` before redirecting or you
-    // might get an infinite redirect loop
-    if (process.browser) {
-      
-
-    const {public:{apiBase}} = useRuntimeConfig();
-    const user = window.localStorage.getItem('user')
-   
-   if (user) {
-    axios.get(`${apiBase}/users/userData`,{
-      id:user?.userId
+  const {public:{apiBase}} = useRuntimeConfig();
+  const {checkUser} = userAuth()
+  const userStore =useUserStore()
+  function checkUsee(user){
+    axios.post(`${apiBase}/users/userData`,{
+      username:user.username
   })
   .then((res)=>{
     console.log(res.data[0]);
-    context.store.userStore.setUserData(res.data[0]);
+    userStore.setUserData(res.data[0])
+   console.log( 'sored role',userStore.role);
   }).catch((error)=>{
       toastr.error(error)
      
   })
-   }else{
-  if ( to.path == '/auth/login' || to.path == '/' ) {
-    
-  } else {
-    return navigateTo('/auth/login')
+}
+    if (process.client) {
+      const user = JSON.parse(window.localStorage.getItem('user'))
+      if (user) {
+        console.log(user.username);
+        checkUser(user.username)
+           }else{
+          if ( to.path == '/auth/login' || to.path == '/' ) {
+            
+          } else {
+            return navigateTo('/auth/login')
+          }
+        
+            }
+    }
+
+
+  //  
+   
+
+  
   }
-    
-   }
-
-  }
 
 
-  })
+
+
+
+  
+ )

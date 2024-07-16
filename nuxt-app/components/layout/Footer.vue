@@ -13,7 +13,7 @@
         </div>
 
         <div class="w-full" >
-            <MapLeafLetMap />
+            <MapLeafLetMap class="" />
         </div>
 
         <div class="" >
