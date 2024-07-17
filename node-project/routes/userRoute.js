@@ -150,7 +150,7 @@ userRoutes.post('/auth-login',(req,res)=>{
 
 
 // create a product in product model
-userRoutes.post('/add',(req,res)=>{
+ userRoutes.post('/add',(req,res)=>{
     console.log('add user');
     let uuid = crypto.randomUUID();
     let userInfo = {
@@ -162,26 +162,50 @@ userRoutes.post('/add',(req,res)=>{
         password:req.body.password,
         address:req.body.address
     }
-    console.log(userInfo);
-    let newUser = new userModel(userInfo)
-  
     let response = {
         state:{
             err:0 ,
         }
       }
-      newUser.save().then(()=>{
-         console.log('new user created');
-         response.state.msg = 'کاربر با موفقیت افزوده شد'
-         res.json(response)
-       }).catch((err)=>{
-        console.log('no creaetd user');
-        let dataBaseresponse = err.message
-        response.state.msg = dataBaseresponse
-        response.state.err++
-        res.status(422)
-           res.json(response)
-       })
+    let isUserExist = false
+    userModel.find({phoneNumber:req.body.phoneNumber}).then((user)=>{
+        console.log('databses res:',user);
+        if(user[0]){
+          
+            isUserExist = true
+            if (isUserExist) {
+                response.state.err++
+                response.state.msg = 'این شماره همراه از قبل ثبت شده است '
+                // status code fo dublicated new data
+                res.status(409)
+                res.json(response)
+                return
+            }
+                }
+                else{
+
+                    
+                    let newUser = new userModel(userInfo)
+                  
+                 
+                      newUser.save().then(()=>{
+                         console.log('new user created');
+                         response.state.msg = 'کاربر با موفقیت افزوده شد'
+                         res.json(response)
+                       }).catch((err)=>{
+                        console.log('no creaetd user');
+                        let dataBaseresponse = err.message
+                        response.state.msg = dataBaseresponse
+                        response.state.err++
+                        res.status(422)
+                           res.json(response)
+                       })
+                }
+    }).catch((err)=>{
+        console.log("err",err);
+    })
+
+
 })
 
 
