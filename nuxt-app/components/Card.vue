@@ -1,10 +1,18 @@
 <template>
-    <div class="container  mt-5 mx-auto " >
-        <div class="mx-auto mb-5" ><h1 class="mx-auto text-center font-bold text-2xl" >ارسالی ها امروز </h1></div>
-        <hr/>
-   <div class="flex gap-5 items-center justify-center justify-items-center mt-5 " >
+    <div class=" max-w-screen  mt-5 mx-auto " >
+
+
+
+<div class="w-11/12 mx-auto" >
+    <div class="mx-auto mb-5 max-w-80 " ><h1 class="mx-auto text-center font-bold text-2xl" >ارسالی ها امروز </h1></div>
+        <hr/> 
+   <div class=" flex gap-5 items-center justify-center  mt-5 " >
     <ProductCard  v-for="product in  productsData"  :key="product" :productsData="product" ></ProductCard>
 </div>
+</div>
+
+
+
 </div>
 </template>
 

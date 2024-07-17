@@ -24,17 +24,16 @@ class-name=" bg-opacity-75 flex rounded-circle z-index-2   ">
 
 
 <l-popup>
-<div class="card bg-transparent">
-<div class="card-header">
-  <h3 class="card-title"> اطلاعات آدرس</h3>
-</div>
-  <div class="card-body card-scroll h-auto">
+<div class=" bg-transparent">
+
+  <div class="h-auto">
    
-  <div class="row">
-         اپدیت شده در:
+  <div class="flex flex-col items-center">
+   
     <div class="w-40  mb-3 "  >
+      ادرس:
       <strong class="flex flex-row-reverse"  >
-     <span> {{ 22/22/22 }} </span><span>  {{ 22/22/22 }} ,</span>
+     <span></span>
     
     </strong>
     </div>
@@ -42,7 +41,7 @@ class-name=" bg-opacity-75 flex rounded-circle z-index-2   ">
   <div class="row">
     کاربر:
    
-    <div class="w-96 mb-3"  >
+    <div class="w-72 mb-3"  >
       <strong>Bloom shop</strong>
     </div>
     

@@ -1,10 +1,12 @@
 <template>
-    <div class="container m-auto" >
+    <div class=" m-auto w-screen" >
 
 <Slider ></Slider>
 <tab-panel/>
-<Description />
-         <Card />
+<Description /> 
+        <div class="w-11/12 flex" >
+            <Card  />
+        </div>
     </div>
 </template>
 
@@ -17,6 +19,15 @@ onMounted(()=>{
 })
 </script>
 
-<style lang="scss" scoped>
+<style>
 
+*{
+    box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+ 
+}
 </style>

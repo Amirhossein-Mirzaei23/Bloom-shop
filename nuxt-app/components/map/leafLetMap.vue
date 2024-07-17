@@ -1,7 +1,7 @@
 <template>
 
             <div class="rounded-2xl overflow-hidden w-full h-60 "  dir="ltr" >
-              <l-map dir="ltr"  class="z-10" ref="map" v-model:zoom="zoom" :center="[36.299, 59.601]" :useGlobalLeaflet="false" >
+              <l-map dir="ltr"  class="z-10" ref="map" v-model:zoom="zoom" :center="[36.30901803183167,59.55649563080715]" :useGlobalLeaflet="false" >
                 <l-tile-layer
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                   layer-type="base"
@@ -48,7 +48,8 @@ export default {
   data() {
     return {
       zoom: 15,
-       marker:[36.299, 59.601]
+       marker:[36.30901803183167,59.55649563080715]
+       
     };
   },
 };

@@ -87,7 +87,7 @@ const btnLoader = ref(false)
 async function create(formData){
     console.log('click');
 
-    try {
+    
         btnLoader.value = true;
       //  errors.value = [];
 /// send new data to create a new product in the server side
@@ -97,18 +97,20 @@ const newUser = await useFetch(`${apiBase}/users/add`,{
         body:formData  
     }).then((res)=>{
         console.log(res.data);
+        toastr.success(res.data.state.msg)
+    }).catch((err)=>{
+console.log(err);
+toastr.error(err.responcse.state.msg)
+    }).finally(()=>{
+        btnLoader.value = false;
     })
 /// use reset method to clear all input value of FormKit
      //   reset('createProductForm')
 /// create a tostr to show success massage 
-        toastr.success("ایجاد کاربر باموفقیت انجام شد");
-    } catch (error) {
+       
+    } 
 //    errors.value = Object.values(error.data.data.message).flat();
-    console.log(error);
-    } finally {
-  btnLoader.value = false;
-    }
-}
+ 
 
 </script>
 
