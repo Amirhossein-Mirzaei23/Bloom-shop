@@ -24,7 +24,7 @@
              </NuxtLink>
                 <NuxtLink to="/" >
                 <button @click="purgeAuth" class="w-full border hover:-translate-y-1 hover:bg-gray-100 hover:-translate-x-1 transition-all duration-500 rounded-e-lg border-gray-300 py-3 group h-16 hover:h-24 mb-10 hover:mb-2 " >
-                    <img class="h-10 scale-125 mx-auto rotate-180"  src="~/assets/Svgs/Logout.png" alt="">
+                    <img class="h-10 scale-125 mx-auto rotate-180"  src="../../assets/Svgs/logout.png" alt="">
                     <p class="mx-auto hover:visible opacity-0 duration-500 transition-all group-hover:opacity-100  text-sm font-serif bg-transparent text-gray-500 rounded-tl-md w-9 h-4 mt-2 rounded-br-md hover:text-gray-200" >خروج</p>
                 </button>
                 </NuxtLink>

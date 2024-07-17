@@ -1,7 +1,7 @@
 <template>
-  <div dir="rtl" class=" m-auto" >
+  <div class=" m-auto" dir="rtl"  >
     <!--header layout--->
-    <LayoutHeader />
+    <LayoutHeader class="" />
     <!--use default nuxt loading page component--->
     <NuxtLoadingIndicator />
     <NuxtPage class="py-16" />
@@ -23,5 +23,12 @@ import 'animate.css';
 
 .github-backgound{
   background-image: url(/assets/gifs/auth-page-bg.gif);
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+ 
 }
 </style>
