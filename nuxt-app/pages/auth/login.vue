@@ -2,24 +2,17 @@
 
     <div class="w-screen min-h-screen github-backgound font-sans pb-20 ">
         <!-- a component to handel and show error massage to the user   bg-gradient-to-tr from-palte-two-2 to-palte-one-2     --->
-        <div v-if="errors.length > 0" class="alert alert-danger">
-            <ul class="mb-0">
-                <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
-            </ul>
-        </div>
+    
         
-            
-          
-
         <div class="w-11/12 min-w-96  sm:w-600  m-auto  flex flex-col" >
-            <div class="cicleAnimation-top animate-pulse sm:mr-8  bg-gradient-to-b from-palte-two-4 to-palte-one-0 bg-opacity-25 -mb-5 w-24 h-24  rounded-full self-start mt-20 ">
+            <div class="cicleAnimation-top animate-pulse sm:mr-8  bg-gradient-to-b from-palte-two-4 to-palte-one-0 bg-opacity-25 -mb-5 w-16 h-16 sm:w-24 sm:h-24  rounded-full self-start mt-20 ">
         <el-tooltip
         class="box-item"
               effect="white"
               content="ویرایش"
               placement="top"
         >
-       <button type="button" class="mt-7 mr-6 cicleAnimation-top scale-75 rounded-full  bg-blue-200 bg-opacity-10 h-10 w-10 " >
+       <button type="button" class="mt-3 mr-3 sm:mt-7 sm:mr-6 cicleAnimation-top scale-75 rounded-full  bg-blue-200 bg-opacity-10 h-10 w-10 " >
         <img class="m-auto" src="/assets/Svgs/pencil-square.svg" alt="">
 </button>
 </el-tooltip>
@@ -121,7 +114,7 @@
         </FormKit>
         </div>
 
-        <div class="bg-gradient-to-t from-teal-300 to-palte-one-0 cicleAnimation-buttom sm:ml-8 -mt-5  w-24 h-24  rounded-full self-end" >
+        <div class="bg-gradient-to-t from-teal-300 to-palte-one-0 cicleAnimation-buttom sm:ml-8 -mt-5  sm:w-24 sm:h-24 w-16 h-16  rounded-full self-end" >
 
         <el-tooltip
         class="box-item"
@@ -129,7 +122,7 @@
         content="ویرایش"
         placement="top"
         >
-       <button @click="submitLogin" type="button" class="mt-7 mr-6 cicleAnimation-top scale-75 rounded-full bg-blue-200 bg-opacity-10 h-10 w-10 " >
+       <button @click="submitLogin" type="button" class="mt-3 sm:mt-7 mr-3  sm:mr-6 cicleAnimation-top scale-75 rounded-full bg-blue-200 bg-opacity-10 h-10 w-10 " >
         <img class="m-auto" src="/assets/Svgs/arrow-return-left.svg" alt="ورود">
 </button>
 </el-tooltip>
@@ -273,12 +266,17 @@ console.log(cellphone.value,name.value,password.value);
     password:password.value,
     }).then((res)=>{
         console.log(res.data);
+        toastr.success(res.data.state.msg)
+    }).catch((err)=>{
+        console.log(err);
+        toastr.error(err.response.data.state.msg)
     })
 
      //   reset('singUpForm')
 
 /// create a tostr to show success massage 
-        toastr.success(res.data.state.msg);
+
+       
     } catch (error) {
 //    errors.value = Object.values(error.data.data.message).flat();
     console.log(error);
