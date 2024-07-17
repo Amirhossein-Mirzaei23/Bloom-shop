@@ -12,30 +12,31 @@
           </div>
         </div>
 
-        <div class="w-full" >
+        <div class="w-full max-w-96 mx-auto"  >
             <MapLeafLetMap class="" />
         </div>
 
-        <div class="" >
+       
             <FormKit type="form"  @submit="sendComment" id="createCommentForm" :incomplete-message="true" :actions="false">
+                <div class=" flex flex-col max-w-80 mx-auto" >
                 <div class="flex flex-col gap-5 p-5 hover:shadow-lg hover:shadow-teal-500" >
-                <div>
-                    <FormKit type="text"  name="title" id="title" label="ایمیل" label-class="form-label"
-                    input-class="form-control px-2  rounded-lg hover:shadow-xl hover:shadow-teal-500  focus:scale-105 transition-all duration-500" validation="required"
+                <div class="" >
+                    <FormKit type="text"  name="title" id="title" label="ایمیل" label-class="text-white text-xs"
+                    input-class="w-full form-control px-2 py-2 rounded-sm md:rounded-md hover:shadow-xl hover:shadow-teal-500  focus:scale-105 transition-all duration-500" validation="required"
                     :validation-messages="{ required: 'ایمیل خود را وارد کنید' }"
-                    messages-class="font-mono text-xs text-rose-800" />
+                    messages-class="font-mono text-xs text-zinc-100" />
                 </div>
-                <div>
-                    <FormKit type="textarea" name="comment" id="comment" label="" label-class="form-label"
-                    input-class="form-control px-2  rounded-lg hover:shadow-xl hover:shadow-teal-500  focus:scale-105 transition-all duration-500" validation="required"
+                <div class="">
+                    <FormKit type="textarea" name="comment" id="comment" label="" label-class="text-white text-xs"
+                    input-class="w-full form-control px-2 py-2 rounded-sm md:rounded-md  hover:shadow-xl hover:shadow-teal-500  focus:scale-105 transition-all duration-500" validation="required"
                     :validation-messages="{ required: 'این فیلد نباید خالی باشد' }"
-                    messages-class="font-mono text-xs text-rose-900" />
+                    messages-class="font-mono text-xs text-zinc-100" />
                 </div>
                 
              
               
              
-                <div>
+                <div class="flex justify-end" >
                     <FormKit
                       type="submit"
                     input-class="bg-cyan-500 px-4 h-10  rounded-lg hover:shadow-xl hover:bg-zinc-200  hover:border-b-4 hover:border-sky-500  transition-all duration-100"
@@ -51,8 +52,9 @@
                     </FormKit>
                 </div>
             </div>
-            </FormKit>
         </div>
+            </FormKit>
+        
 
      </div>
 
