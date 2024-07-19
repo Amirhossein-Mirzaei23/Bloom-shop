@@ -75,26 +75,26 @@
         <div class="flex flex-row xl:ml-5 lg:ml-3 ml-1" >
         
 
-          <div v-if="!isAuthenticated" class=" m-auto translate-x-3 duration-700 transition-all group translate-y-3 hover:translate-y-0" >
+          <div v-if="!isAuthenticated" class=" m-auto translate-x-3 duration-700 transition-all group translate-y-3 hover:translate-y-0 bg-transparent" >
             <NuxtLink to="/auth/login" >
             <button >
-            <img class="w-7 h-7 rounded-full " src="/assets/Svgs/login.png" alt="">
-          <p class="opacity-0 duration-500 transition-all group-hover:opacity-100  text-sm font-serif bg-transparent text-gray-500 rounded-tl-md w-7 h-4 mt-2 rounded-br-md hover:text-gray-200" >ورود</p>
+            <img class="w-7 h-7 rounded-full bg-transparent" src="/assets/Svgs/login.png" alt="">
+          <p class="opacity-0 bg-transparent duration-500 transition-all group-hover:opacity-100  text-sm font-serif  text-gray-500 rounded-tl-md w-7 h-4 mt-2 rounded-br-md hover:text-gray-200" >ورود</p>
           </button>
         </NuxtLink>
         </div>
-        <div v-else class=" m-auto translate-x-3 duration-700 transition-all  group translate-y-3 hover:translate-y-0" >
+        <div v-else class="bg-transparent m-auto translate-x-3 duration-700 transition-all  group translate-y-3 hover:translate-y-0" >
           <button @click="purgeAuth" >
             
-         <img class="w-7 h-7 rounded-full" src="/assets/Svgs/logout.png" alt="">
+         <img class="w-7 h-7 rounded-full bg-transparent" src="/assets/Svgs/logout.png" alt="">
         <p class="opacity-0 duration-500 transition-all group-hover:opacity-100  text-sm font-serif bg-transparent text-gray-500 rounded-tl-md w-7 h-4 mt-2 rounded-br-md hover:text-gray-200" >خروج</p>
         </button>
       </div>
-      <div  class=" m-auto translate-x-3 duration-700 transition-all  group translate-y-3 hover:translate-y-0" >
+      <div  class=" m-auto translate-x-3 bg-transparent duration-700 transition-all  group translate-y-3 hover:translate-y-0" >
         <NuxtLink to="/user/profile" >
         <button >
-        <img class="w-7 h-7 rounded-full" src="/assets/gifs/user-profile.gif" alt="">
-      <p class="opacity-0 duration-500 transition-all group-hover:opacity-100  text-sm font-serif bg-transparent text-gray-500 rounded-tl-md w-9 h-4 mt-2 rounded-br-md hover:text-gray-200" >پروفایل</p>
+        <img class="w-7 h-7 rounded-full bg-transparent" src="/assets/gifs/user-profile.gif" alt="">
+      <p class="opacity-0 duration-500 transition-all bg-transparent group-hover:opacity-100  text-sm font-serif bg-transparent text-gray-500 rounded-tl-md w-9 h-4 mt-2 rounded-br-md hover:text-gray-200" >پروفایل</p>
       </button>
     </NuxtLink>
     </div>
