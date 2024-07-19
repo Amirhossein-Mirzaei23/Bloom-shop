@@ -25,7 +25,7 @@ userRoutes.post('/userData',(req,res)=>{
         },
         data:null
       }
-      console.log("req.params:",req.params,'req.body:',req.body);
+     
 
     if(!req.body.username){
 
@@ -36,9 +36,9 @@ userRoutes.post('/userData',(req,res)=>{
         return
        
     }else{
-        console.log(typeof(req.body.username));
+       
         userModel.find({username:req.body.username}).then((user)=>{
-            console.log('User data:',user);
+            
             response.data = user
             res.json(response)
             return
@@ -112,7 +112,7 @@ userRoutes.post('/auth-login',(req,res)=>{
        
        if (user[0]) {
        if (user[0].password == req.body.password) {
-       console.log(user[0].password, req.body.password);
+     
        res.status(200)
        response.data = user
         response.state.msg ='ورود با موفقیت انجام شد'
@@ -169,7 +169,7 @@ userRoutes.post('/auth-login',(req,res)=>{
       }
     let isUserExist = false
     userModel.find({phoneNumber:req.body.phoneNumber}).then((user)=>{
-        console.log('databses res:',user);
+       
         if(user[0]){
           
             isUserExist = true
