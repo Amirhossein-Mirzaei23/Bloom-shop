@@ -1,10 +1,10 @@
 import { ref } from 'vue';
 import axios from 'axios';
-
+import { useUserStore } from "~/store/userStore";
 
 export  function userAuth() {
     const {public:{apiBase}} = useRuntimeConfig();
-    
+    const userStore =useUserStore()
     function checkUser(username) {
         // Simulate API call to fetch user data
         console.log('if');
@@ -12,8 +12,9 @@ export  function userAuth() {
           username:username
       })
       .then((res)=>{
-        console.log( res.data.data[0].role);
-       
+        
+        userStore.setUserData(res.data.data[0])
+        
         if (res.data.data) {
           console.log('if compos if true');
             return true
