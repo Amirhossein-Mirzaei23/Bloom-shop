@@ -9,10 +9,11 @@ export const useUserStore = defineStore('user', {
   }),
   actions: {
     setUserData(data) {
-        console.log('user data fetch from middelware',data.role);
+        console.log('user data fetch from middelware',data);
       this.role = data.role; // Assign role from data (or default to empty)
       this.isAdmin =  data.role == 'admin' ? true: false
       this.user = data
+      this.userId = data.userId
       this.isAuthenticated = true;  // Update authentication flag
     },
     logout() {
