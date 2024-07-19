@@ -7,8 +7,8 @@
                 <span  class=" font-semibold" >نام و نام خانوادگی </span>
             </div>
             <div class="w-80 border py-2 border-gray-300 rounded-md px-2 " >
-                <p v-if="userData?.name" > {{ userData?.name }}</p>
-<p v-else >{{ userData?.first_name }} {{ userData?.last_name }}</p>
+                <p v-if="props.user?.name" > {{ props.user?.name }}</p>
+<p v-else >{{ props.user?.first_name }} {{ props.user?.last_name }}</p>
 
             </div>
         </div>
@@ -17,7 +17,7 @@
                 <span  class=" font-semibold" >تلفن همراه </span>
             </div>
             <div class="w-80 border py-2 border-gray-300 rounded-md px-2 " >
-<p >{{userData?.phoneNumber}}</p>
+<p >{{props.user?.phoneNumber}}</p>
 
             </div>
         </div>
@@ -26,7 +26,7 @@
                 <span  class=" font-semibold" >نام کاربری</span>
             </div>
             <div class="w-80 border py-2 border-gray-300 rounded-md px-2 " >
-                <p >{{userData?.username}}</p>
+                <p >{{props.user?.username}}</p>
 
             </div>
         </div>
@@ -35,8 +35,8 @@
                 <span class=" font-semibold" >ادرس</span>
             </div>
             <div class="w-80 border py-2 border-gray-300 rounded-md px-2 " >
-<p >{{userData?.address}}</p>
-
+<p v-if="props.user?.address"> {{props.user?.address}}</p>
+<p v-else> هنوز ادرس شما ثبت نشده است</p>
             </div>
         </div>
     </div>
@@ -44,6 +44,8 @@
 
 <script setup>
 const userData = ref()
+const props = defineProps(['user'])
+
 function purgeAuth(){
     localStorage.clear('user')
     console.log('purge auth');
@@ -52,9 +54,7 @@ function purgeAuth(){
 
   }
 
-  onMounted(()=>{
-   userData.value = JSON.parse(localStorage.getItem('user'))
-  })
+
 
 </script>
 
