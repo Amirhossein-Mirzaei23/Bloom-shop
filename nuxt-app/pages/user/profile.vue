@@ -30,11 +30,17 @@
                 </NuxtLink>
             </div>
 
-            <div class="grid grid-rows-2 h-32 rounded-xl border" >
-                <div @click="changeComponent('userData')" class="border-b flex justify-center items-center group  hover:bg-gray-200 transition-all  duration-300" >
+            <div class="grid grid-rows-2  rounded-xl border" >
+                <div @click="changeComponent('userData')" class="h-16 border-b flex justify-center items-center group  hover:bg-gray-200 transition-all  duration-300" >
                     <div class="tracking-wider" >اطلاعات شخصی</div>
                 </div>
-                <div @click="changeComponent('userOrder')" class="border-b flex justify-center items-center hover:bg-gray-200 transition-all duration-300"  >
+                <div @click="changeComponent('userCart')" class="h-16 border-b flex justify-center items-center hover:bg-gray-200 transition-all duration-300"  >
+                    <div class="tracking-wider  transition-all duration-300" >
+                        سبد خرید
+                    </div>
+                
+                </div>
+                <div @click="changeComponent('userOrder')" class="h-16 border-b flex justify-center items-center hover:bg-gray-200 transition-all duration-300"  >
                     <div class="tracking-wider  transition-all duration-300" >
                         سفارشات
                     </div>
@@ -43,27 +49,65 @@
             </div>
         </div>
         
-        <ProfileUserInfo v-if="userData" class="min-w-96 md:w-6/12  lg:w-8/12  animate__animated animate__fadeInLeft"  />
-        <ProfileUserOrder v-if="userOrder" class="min-w-96 md:w-6/12  lg:w-8/12 animate__animated animate__fadeInDown " />
-      
+        <ProfileUserInfo :user="user" v-if="userData" class="min-w-80 sm:min-w-96 md:w-6/12  lg:w-8/12  animate__animated animate__fadeInLeft"  />
+        <ProfileUserOrder v-if="userOrder" class="min-w-80 md:w-6/12  lg:w-8/12 animate__animated animate__fadeInDown " />
+      <ProfileUserCart  :user="user" v-if="userCart" :user-cart-data="userCartData"  class="min-w-80  sm:min-w-96 md:w-6/12  lg:w-8/12 animate__animated animate__fadeInDown "  />
     </div>
 </template>
 
 <script setup>
-const userData = ref(true)
+
+import axios from 'axios'
+import { useUserStore } from '~/store/userStore';
+const store = useUserStore()
+
+
+const userData = ref(false)
 const userOrder = ref(false)
+const userCart = ref(true)
+
+
+const userCartData = ref()
 const userAddres = ref(false)
 const userTransactions = ref(false)
+const {public:{apiBase}} = useRuntimeConfig();
+
+// create this variable to store user data
+const user = ref()
+
+function cartProductList() {
+   user.value = store.user
+    console.log('user store prof',store.userId);
+    axios.post(`${apiBase}/userCart/list`,{
+        userId:JSON.parse(localStorage.getItem('user')).userId
+    }).then((res)=>{
+        console.log(res);
+        userCartData.value = res.data.data
+    }).catch((err)=>{
+        console.log(err);
+    })
+}
+onMounted(()=>{
+    cartProductList()
+  user.value =  JSON.parse(localStorage.getItem('user'))
+})
 
 function changeComponent(name) {
     switch (name) {
         case 'userData':
         userData.value = true;
         userOrder.value = false;
+        userCart.value = false
             break;
-            case 'userOrder':
+            case 'userOrder': 
         userData.value = false;
         userOrder.value = true;
+        userCart.value = false
+            break;
+            case 'userCart':
+        userData.value = false;
+        userOrder.value = false;
+        userCart.value = true
             break;
         default:
             break;
