@@ -69,6 +69,12 @@ import { reset } from "@formkit/core";
 const {public:{apiBase}} = useRuntimeConfig();
 
 const btnLoader = ref(false)
+
+function sendComment(e) {
+    console.log(e);
+}
+
+
 </script>
 
 <style lang="scss" scoped>

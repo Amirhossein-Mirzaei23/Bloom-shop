@@ -1,4 +1,5 @@
 <template>
+  <div>
 
     <div class="text-white github-backgound w-screen">
 
@@ -8,8 +9,33 @@
                     <div class=" w-full text-xs   mx-auto ">
                       <q-btn-group class="xl:mr-5 lg:mr-1 mr-0 rounded-lg  hover:shadow-xl  hover:shadow-teal-400 transition-all duration-500 mt-4" >
                         <q-btn  class="text-white text-xs lg:text-sm w-16 lg:w-20 max-lg:hidden"  to="/"  color="bg-gray-400" label="صفحه اصلی" />
+                        <v-menu
+                        transition="slide-x-transition"
+                      >
+                        <template v-slot:activator="{ props }">
+                          <v-btn
+                            color="primary"
+                            v-bind="props"
+                          >
+                           فروشگاه
+                          </v-btn>
+                        </template>
+                  
+                        <v-list>
+                          <v-list-item
+                          v-for="category in categoriesTilte" :key="category" 
+                            :to="`/productList/${category.categoryId}`"
+                          >
+                            <v-list-item-title
+                          
+                            
+                            >{{ category.title }}</v-list-item-title>
+                          </v-list-item>
+                        </v-list>
+                      </v-menu>
+                      <!------
                         <q-btn-dropdown auto-close class="text-white text-xs lg:text-sm  md:w-28 lg:w-auto "  color="primary" label="فروشگاه" split>
-                            <!-- dropdown content goes here -->
+                            <-- dropdown content goes here --
                             <q-list class="bg-gradient-to-r from-gray-400 via-white to-gray-200  " padding style="width: 250px">
                              
                               <q-item clickable  v-for="category in categoriesTilte" :key="category"  :to="`/productList/${category.categoryId}`" >
@@ -23,10 +49,10 @@
                                   <q-item-label caption><span class="text-xs" >{{ category.description }}</span>
                                   </q-item-label>
                                 </q-item-section>
-                              <!-----  <q-item-section side>
+                              <-----  <q-item-section side>
                                   <q-icon name="info" color="info" /> 
                                  
-                                </q-item-section> ---->
+                                </q-item-section> ----
                               </q-item>
                     
                               
@@ -38,7 +64,7 @@
                     
                             
                             </q-list>
-                          </q-btn-dropdown>
+                          </q-btn-dropdown> ---->
    
                    <q-btn  v-for="category in categoriesTilte" :key="category"  :to="`/productList/${category.categoryId}`"  class="text-white  text-xs lg:text-sm md:w-20 lg:w-auto "  color="bg-gray-400" :label="category.title" />
                    <q-btn v-if=" isAdmin" class="text-white  text-xs lg:text-sm " to="/admin/create"  color="bg-gray-400" label="پنل ادمین" />
@@ -116,6 +142,7 @@
     </div>
 </div>
 <ResponsiveMenu @closeReesponsiveMenu="reponsiveMenuHandeler" :categories="categoriesTilte" :isAdmin="isAdmin" v-if="respnsiveMenu" class="sticky top-0 z-20 animate__animated animate__fadeInRight"  />
+</div>
 </template>
 
 <script setup>

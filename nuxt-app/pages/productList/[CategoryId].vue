@@ -67,13 +67,6 @@ console.log('err');
 }
 
 let pageTilte = ref('')
-let pageTitleArray= [
-         "دسته گل",
-         "گیاهان آپارتمانی",
-         "دسته گل",
-         "دسته گل",
-         "ارسالی های امروز"
-    ]
 
 function pageTitleHandeler() {
     axios.get(`${apiBase}/categories`).then((res)=>{

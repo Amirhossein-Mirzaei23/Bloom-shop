@@ -22,8 +22,16 @@
                     </td>
                 </tr>
                 <tr class="border rounded-b-lg bg-slate-100 group hover:bg-gray-300 " v-for="product in props.userCartData.products" :key="product" >
-                    <td class="cursor-pointer  group-hover:tracking-wide group-hover:text-blue-500" >
+                    <td 
+                    
+                    class="cursor-pointer  group-hover:tracking-wide group-hover:text-blue-500" >
+                    <NuxtLink
+                     :to="`/produtcs/test`"
+                    >
+                     
+                   
                         {{ product.productId }}
+                    </NuxtLink>
                     </td>
                     <td>
                         {{ product.name }}

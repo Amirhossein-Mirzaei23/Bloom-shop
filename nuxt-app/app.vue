@@ -1,5 +1,6 @@
 <template>
-  <div class=" m-auto" dir="rtl"  >
+  <v-locale-provider rtl>
+  <div class=" m-auto"   >
     <!--header layout--->
     <LayoutHeader class="" />
     <!--use default nuxt loading page component--->
@@ -8,6 +9,7 @@
     <!--footer lay out--->
     <LayoutFooter />
   </div>
+</v-locale-provider>
 </template>
 <script>
 import 'animate.css';
