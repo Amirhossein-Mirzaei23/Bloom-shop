@@ -1,19 +1,31 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["nuxt-quasar-ui", "@vesp/nuxt-fontawesome",'nuxt-icons', '@nuxtjs/i18n','@formkit/nuxt', '@pinia/nuxt'],
-
-  plugins: [
-    '~/plugins/axios'
+  modules: [
+    "nuxt-quasar-ui",
+    "@vesp/nuxt-fontawesome",
+    'nuxt-icons',
+    '@nuxtjs/i18n',
+    '@formkit/nuxt',
+    '@pinia/nuxt',
+    
   ],
 
-  css: ['~/assets/css/tailwind.css','@fortawesome/fontawesome-svg-core/styles.css','~/assets/css/font.css'],
+  plugins: [
+    '~/plugins/axios',
+    '~/plugins/vuetify'
+  ],
+
+  css: ['~/assets/css/tailwind.css','@fortawesome/fontawesome-svg-core/styles.css','~/assets/css/font.css',  'vuetify/styles'],
 
   fontawesome: {
     icons: {
       solid: ['dollar-sign', 'cog', 'circle', 'check', 'calendar'],
       regular: ['user']
     }
+  },
+  build: {
+    transpile: ['vuetify'],
   },
  
 
